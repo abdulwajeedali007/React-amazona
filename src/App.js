@@ -2,6 +2,7 @@ import React from 'react'
 import data from './data.json'
 import Products from './Components/Products'
 import Filter from './Components/Filter'
+import Cart from './Components/Cart'
 class App extends React.Component{
   constructor(props) {
     super(props)
@@ -9,10 +10,13 @@ class App extends React.Component{
     this.state = {
        products: data.products,
        size: '',
-       sort: ''
+       sort: '',
+       cartItems: []
     }
     this.handleSize = this.handleSize.bind(this)
     this.handleSort = this.handleSort.bind(this)
+    this.addToCart = this.addToCart.bind(this)
+    this.removeFromCart = this.removeFromCart.bind(this)
   }
   handleSort(e){
    console.log(e.target.value);
@@ -53,6 +57,48 @@ class App extends React.Component{
       })
     }
   }
+
+  // add to cart
+  addToCart = (product) => {
+    // clone the cartItems
+     const cartItems = this.state.cartItems.slice();
+     let alreadyInCart = false;
+     cartItems.forEach(item =>{
+        if(item._id === product._id){
+          item.count++;
+          alreadyInCart = true
+        }
+      })
+     if(!alreadyInCart){
+       cartItems.push({...product, count :1})
+     }
+
+     this.setState({
+       cartItems: cartItems
+     })
+  }
+
+// remove item from cart
+removeFromCart = (product) => {
+  // cloning the state.property
+  const cartItems = this.state.cartItems.slice();
+  this.setState({cartItems: cartItems.filter(item => item._id !== product._id)})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   render(){
     return (
       <div className="grid-container">
@@ -69,10 +115,10 @@ class App extends React.Component{
                  handleSort={this.handleSort}
                 />
                  <hr/>
-                <Products products={this.state.products}/>
+                <Products products={this.state.products} addToCart = {this.addToCart}/>
              </div>
              <div className="sidebar">
-                sidebar
+                <Cart cartItems = {this.state.cartItems} removeFromCart={this.removeFromCart} />
              </div>
           </div>
         </main>
