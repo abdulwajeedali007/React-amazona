@@ -201,3 +201,24 @@ footer {
 .proceed:focus {
   outline: none;
 }
+/* cartForm */
+.cartForm h4 {
+  letter-spacing: 1px;
+}
+
+.cartForm form .form_box {
+  display: block;
+  width: 95%;
+}
+.cartForm form .form_box label {
+  display: block;
+  margin-bottom: 5px;
+}
+.cartForm form .form_box .inputBox {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+}
+.btn-submit {
+  padding: 0.5rem 1rem;
+}
