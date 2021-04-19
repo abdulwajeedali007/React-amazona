@@ -11,15 +11,15 @@ class App extends React.Component{
        products: data.products,
        size: '',
        sort: '',
-       cartItems: []
+       cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): []
     }
     this.handleSize = this.handleSize.bind(this)
     this.handleSort = this.handleSort.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.removeFromCart = this.removeFromCart.bind(this)
+    // this.handleSubmitdata = this.handleSubmitdata.bind(this)
   }
   handleSort(e){
-   console.log(e.target.value);
    if(e.target.value === ""){
      this.setState({
        sort:  e.target.value,
@@ -76,6 +76,7 @@ class App extends React.Component{
      this.setState({
        cartItems: cartItems
      })
+     localStorage.setItem("cartItems", JSON.stringify(this.state.cartItems));
   }
 
 // remove item from cart
@@ -83,14 +84,20 @@ removeFromCart = (product) => {
   // cloning the state.property
   const cartItems = this.state.cartItems.slice();
   this.setState({cartItems: cartItems.filter(item => item._id !== product._id)})
+  localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(item => item._id !== product._id)));
+}
+
+
+handleSubmitdata = (e) => {
+  e.preventDefault();
+
 }
 
 
 
-
-
-
-
+handleSubmitdata = (order) =>{
+  alert("Order is ordered by "+ order.name)
+}
 
 
 
@@ -118,7 +125,7 @@ removeFromCart = (product) => {
                 <Products products={this.state.products} addToCart = {this.addToCart}/>
              </div>
              <div className="sidebar">
-                <Cart cartItems = {this.state.cartItems} removeFromCart={this.removeFromCart} />
+                <Cart cartItems = {this.state.cartItems} removeFromCart={this.removeFromCart} handleSubmitdata={this.handleSubmitdata}/>
              </div>
           </div>
         </main>
