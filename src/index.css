@@ -113,3 +113,14 @@ footer {
 .button.primary {
   background: #f0c040;
 }
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+  margin: 1rem;
+}
+.filter div {
+  flex: 1;
+}
