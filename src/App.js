@@ -116,7 +116,7 @@ handleSubmitdata = (order) =>{
           </div>
         </main>
         <footer>
-           this is footer
+           &copy; Copyright issue
         </footer>
       </div>
     )
