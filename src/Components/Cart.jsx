@@ -28,9 +28,9 @@ export default class Cart extends Component {
             address: this.state.address,
             cartItems: this.props.cartItems,
         }
-
+        
+      this.setState({name: '', email: '', address: ''})
         this.props.handleSubmitdata(order)
-
     }     
 
 

@@ -222,3 +222,38 @@ footer {
 .btn-submit {
   padding: 0.5rem 1rem;
 }
+
+/* modal design */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.close-modal {
+  border: none;
+  padding: 5px 15px;
+  background: rgb(250, 31, 78);
+  color: #fff;
+  margin-bottom: 10px;
+}
+.close-modal:focus {
+  outline: none;
+}
+.product-detail-content .product {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 1.5rem;
+}
+.content-box,
+.closeBtn {
+  padding: 1.2rem;
+}
+
+.closeBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
